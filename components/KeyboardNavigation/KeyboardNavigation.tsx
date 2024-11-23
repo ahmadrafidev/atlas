@@ -1,26 +1,26 @@
 'use client'
 
-import { useState, useEffect } from 'react'
-import { Button } from '@/components/ui/button'
+import { useState, useEffect } from 'react';
+import { Button } from '@/components/ui/button';
 
 export default function KeyboardNavigation() {
-  const [focusedElements, setFocusedElements] = useState([])
+  const [focusedElements, setFocusedElements] = useState<HTMLElement[]>([]);
 
   useEffect(() => {
-    const handleKeyDown = (e) => {
+    const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === 'Tab') {
         setTimeout(() => {
-          const activeElement = document.activeElement
+          const activeElement = document.activeElement as HTMLElement | null;
           if (activeElement) {
-            setFocusedElements(prev => [...prev, activeElement])
+            setFocusedElements((prev) => [...prev, activeElement]);
           }
-        }, 0)
+        }, 0);
       }
-    }
+    };
 
-    document.addEventListener('keydown', handleKeyDown)
-    return () => document.removeEventListener('keydown', handleKeyDown)
-  }, [])
+    document.addEventListener('keydown', handleKeyDown);
+    return () => document.removeEventListener('keydown', handleKeyDown);
+  }, []);
 
   return (
     <div className="mt-4">
@@ -29,7 +29,7 @@ export default function KeyboardNavigation() {
       <div className="space-y-2">
         {focusedElements.map((el, index) => (
           <div key={index} className="p-2 bg-gray-100 rounded">
-            {index + 1}. {el.tagName.toLowerCase()} 
+            {index + 1}. {el.tagName.toLowerCase()}
             {el.id && `#${el.id}`}
             {el.className && `.${el.className.split(' ').join('.')}`}
           </div>
@@ -39,6 +39,5 @@ export default function KeyboardNavigation() {
         Reset Test
       </Button>
     </div>
-  )
+  );
 }
-

@@ -1,11 +1,16 @@
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { Issue } from '@/types/issues';
 
-export default function IssuesList({ issues }) {
+interface IssuesListProps {
+  issues: Issue[];
+}
+
+export default function IssuesList({ issues }: IssuesListProps) {
   if (!issues || issues.length === 0) {
     return (
       <div className="text-center p-4">
         <p className="text-green-600 font-semibold text-lg">
-          🎉 Your website is error-free!
+          Your website is error-free!🎉
         </p>
       </div>
     );

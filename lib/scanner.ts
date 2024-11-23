@@ -1,4 +1,4 @@
-export async function scanWebsite(url) {
+export async function scanWebsite(url: string) {
   try {
     const response = await fetch('/api/scan', {
       method: 'POST',
