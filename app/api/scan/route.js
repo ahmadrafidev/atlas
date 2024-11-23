@@ -19,6 +19,8 @@ export async function POST(req) {
 
     const page = await browser.newPage();
 
+    await page.setUserAgent('Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36');
+
     try {
       await page.goto(url, { waitUntil: 'domcontentloaded', timeout: 30000 });
     } catch (error) {
