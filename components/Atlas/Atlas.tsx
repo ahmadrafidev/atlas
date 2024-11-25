@@ -24,16 +24,12 @@ export default function Atlas() {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen bg-white">
-      <header className="absolute top-4 left-6 flex items-center space-x-2 text-black">
-        <div className="text-3xl font-bold">Atlas</div>
-      </header>
-
-      <main className="flex flex-col items-center w-full max-w-5xl px-4 text-center my-12">
-        <h1 className="text-3xl font-bold text-black mb-2">
-          Website Accessibility Analysis <span className="italic">Simplified</span>
+    <div className="flex flex-col items-center justify-center bg-white">
+      <main className="flex flex-col items-center w-full max-w-5xl px-4 text-center">
+        <h1 className="text-4xl font-bold text-black mb-2">
+          Website Accessibility Analysis, <span className="italic">Simplified</span>
         </h1>
-        <p className="text-gray-600 text-sm mb-6">
+        <p className="text-gray-600 text-lg mb-6">
           Effortlessly analyze your websites accessibility.
         </p>
 
