@@ -24,14 +24,20 @@ export default function Atlas() {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center bg-white">
-      <main className="flex flex-col items-center w-full max-w-5xl px-4 text-center">
-        <h1 className="text-4xl font-bold text-black mb-2">
-          Website Accessibility Analysis, <span className="italic">Simplified</span>
-        </h1>
-        <p className="text-gray-600 text-lg mb-6">
-          Effortlessly analyze your websites accessibility.
-        </p>
+    <div className="flex items-center justify-center">
+      <main className="flex flex-col items-center justify-center px-4 text-center max-w-2xl w-full">
+
+        <div className="pt-12">
+          <h1 className="text-4xl font-bold text-black mb-2 tracking-normal">
+            Website Accessibility Analysis,{' '}
+            <span className="text-5xl tracking-tighter bg-clip-text text-transparent bg-gradient-to-r from-cyan-400 via-blue-500 to-violet-500">
+              Simplified
+            </span>
+          </h1>
+          <p className="text-gray-600 text-lg mb-6">
+            Effortlessly analyze your websites accessibility.
+          </p>
+        </div>
 
         <div className="flex w-full space-x-2">
           <Input
@@ -44,9 +50,9 @@ export default function Atlas() {
           <Button
             onClick={handleScan}
             disabled={isScanning}
-            className="px-6 py-3 text-lg bg-black text-white rounded-lg"
+            className="px-6 py-3 text-lg bg-neutral-900 text-white rounded-lg"
           >
-            {isScanning ? 'Scanning...' : 'Scan'}
+            {isScanning ? 'Analyzing...' : 'Analyze'}
           </Button>
         </div>
 

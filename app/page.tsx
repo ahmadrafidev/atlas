@@ -3,11 +3,11 @@ import { Header } from '../components/Header/Header';
 
 export default function Home() {
   return (
-    <>
+    <div className="h-screen flex flex-col">
       <Header />
-      <main className="flex flex-col items-center justify-center min-h-screen bg-white">
+      <div className="flex-1">
         <Atlas />
-      </main>
-    </>
+      </div>
+    </div>
   );
 }
