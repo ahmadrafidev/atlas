@@ -11,14 +11,23 @@ export default function Atlas() {
   const [url, setUrl] = useState<string>('');
   const [issues, setIssues] = useState<Issue[]>([]);
   const [isScanning, setIsScanning] = useState<boolean>(false);
+  const [error, setError] = useState<string | null>(null);
 
   const handleScan = async () => {
+    setError(null);
+
+    if (!url.trim()) {
+      setError('Please enter a valid website URL.');
+      return;
+    }
+
     setIsScanning(true);
     try {
       const result: Issue[] = await scanWebsite(url);
       setIssues(result);
     } catch (error) {
       console.error('Scanning error:', error);
+      setError('An error occurred while scanning the website.');
     }
     setIsScanning(false);
   };
@@ -26,7 +35,6 @@ export default function Atlas() {
   return (
     <div className="flex items-center justify-center">
       <main className="flex flex-col items-center justify-center px-4 text-center max-w-2xl w-full">
-
         <div className="pt-12">
           <h1 className="text-4xl font-bold text-black mb-2 tracking-normal">
             Website Accessibility Analysis,{' '}
@@ -39,21 +47,26 @@ export default function Atlas() {
           </p>
         </div>
 
-        <div className="flex w-full space-x-2">
-          <Input
-            type="url"
-            placeholder="Enter website URL"
-            value={url}
-            onChange={(e) => setUrl(e.target.value)}
-            className="flex-1 text-lg py-3 px-4 rounded-lg border border-gray-300"
-          />
-          <Button
-            onClick={handleScan}
-            disabled={isScanning}
-            className="px-6 py-3 text-lg bg-neutral-900 text-white rounded-lg"
-          >
-            {isScanning ? 'Analyzing...' : 'Analyze'}
-          </Button>
+        <div className="flex flex-col w-full space-y-2">
+          <div className="flex w-full space-x-2">
+            <Input
+              type="url"
+              placeholder="Enter website URL"
+              value={url}
+              onChange={(e) => setUrl(e.target.value)}
+              className={`flex-1 text-lg py-3 px-4 rounded-lg border ${
+                error ? 'border-red-500' : 'border-gray-300'
+              }`}
+            />
+            <Button
+              onClick={handleScan}
+              disabled={isScanning}
+              className="px-6 py-3 text-lg bg-neutral-900 text-white rounded-lg"
+            >
+              {isScanning ? 'Analyzing...' : 'Analyze'}
+            </Button>
+          </div>
+          {error && <p className="text-red-500 text-sm mt-1">{error}</p>}
         </div>
 
         {issues.length > 0 && (
