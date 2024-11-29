@@ -2,9 +2,9 @@ import Link from "next/link";
 
 export function Header() {
   return (
-    <header className="relative w-full px-12 py-4 flex justify-start items-center">
+    <header className="relative w-full py-4 flex justify-center items-center mb-4">
       <Link href="/">
-        <h1 className="text-5xl font-semibold tracking-tight">
+        <h1 className="text-5xl font-semibold tracking-tight text-gray-800">
           Atlas
         </h1>
       </Link>

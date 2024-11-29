@@ -35,7 +35,7 @@ export default function Atlas() {
   return (
     <div className="flex items-center justify-center">
       <main className="flex flex-col items-center justify-center px-4 text-center max-w-2xl w-full">
-        <div className="pt-12">
+        <div className="pt-14">
           <h1 className="text-4xl font-bold text-black mb-2 tracking-normal">
             Website Accessibility Analysis,{' '}
             <span className="text-5xl tracking-tighter bg-clip-text text-transparent bg-gradient-to-r from-cyan-400 via-blue-500 to-violet-500">
@@ -51,7 +51,7 @@ export default function Atlas() {
           <div className="flex w-full space-x-2">
             <Input
               type="url"
-              placeholder="Enter website URL"
+              placeholder="Enter a website URL"
               value={url}
               onChange={(e) => setUrl(e.target.value)}
               className={`flex-1 text-lg py-3 px-4 rounded-lg border ${
