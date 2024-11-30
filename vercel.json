@@ -1,7 +1,10 @@
 {
   "functions": {
-    "api/**/*.js": {
-      "includeFiles": "node_modules/@sparticuz/chromium/**"
+    "app/api/**/*.js": {
+      "includeFiles": [
+        "node_modules/@sparticuz/chromium/**",
+        "public/axe-core/axe.min.js"
+      ]
     }
   }
 }
