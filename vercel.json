@@ -1,6 +1,6 @@
 {
   "functions": {
-    "api/scan/route.js": {
+    "api/scan/**/*.js": {
       "includeFiles": "node_modules/@sparticuz/chromium/**"
     }
   }
