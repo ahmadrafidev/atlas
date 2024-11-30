@@ -15,30 +15,29 @@ export async function POST(req) {
       });
     }
 
-    const isDevelopment = process.env.NODE_ENV === 'development';
     const isProduction = process.env.NODE_ENV === 'production';
 
     let executablePath;
 
-    if (isDevelopment) {
+    if (!isProduction) {
       console.log('Running in development mode.');
 
       const developmentChromiumPath = process.env.DEV_CHROMIUM_PATH;
-      executablePath = developmentChromiumPath;
-
-      if (!executablePath) {
-        throw new Error('Failed to resolve Puppeteer executablePath in development.');
+      if (!developmentChromiumPath) {
+        throw new Error(
+          'DEV_CHROMIUM_PATH is not set. Please configure the environment variable for development.'
+        );
       }
-    } else if (isProduction) {
+      executablePath = developmentChromiumPath;
+    } else {
       console.log('Running in production mode.');
 
       executablePath = await chromium.executablePath;
-
       if (!executablePath) {
-        throw new Error('Failed to resolve Puppeteer executablePath in production.');
+        throw new Error(
+          'Chromium executablePath could not be resolved in production. Ensure @sparticuz/chromium is properly configured.'
+        );
       }
-    } else {
-      throw new Error('Unknown environment. Please set NODE_ENV to development or production.');
     }
 
     console.log('Resolved Chromium Executable Path:', executablePath);
@@ -69,10 +68,10 @@ export async function POST(req) {
     }
 
     const axePath = resolve(process.cwd(), 'public/axe-core/axe.min.js');
-
     if (!axePath) {
-      throw new Error('Axe-Core path could not be resolved.');
+      throw new Error('Axe-Core path could not be resolved. Ensure axe.min.js exists in public/axe-core.');
     }
+    console.log('Resolved Axe-Core Path:', axePath);
 
     await page.addScriptTag({ path: axePath });
 
