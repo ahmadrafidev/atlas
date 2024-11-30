@@ -33,6 +33,11 @@ export async function POST(req) {
     } else {
       console.log('Running in production mode.');
 
+      if (!fs.existsSync('/tmp/chromium')) {
+        console.log('Chromium binary not found. Extracting...');
+        await chromium.executablePath; 
+      }
+
       executablePath = await chromium.executablePath;
 
       if (!fs.existsSync(executablePath)) {
