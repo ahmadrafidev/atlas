@@ -38,14 +38,13 @@ export default function IssuesList({ issues }: IssuesListProps) {
             <ul className="list-disc pl-5 space-y-3 text-justify">
               {issue.nodes.map((node, nodeIndex) => (
                 <li key={nodeIndex} className="text-sm text-gray-800">
-                  <p className="font-medium text-gray-800">
-                    {node.failureSummary}
-                  </p>
+                  <p className="font-medium text-gray-800">{node.failureSummary}</p>
                   <p className="text-sm text-gray-600">
                     <strong>HTML:</strong> <code>{node.html}</code>
                   </p>
                   <p className="text-sm text-gray-600">
-                    <strong>Target:</strong> {node.target.join(', ')}
+                    <strong>Target:</strong>{' '}
+                    {Array.isArray(node.target) ? node.target.join(', ') : node.target || 'N/A'}
                   </p>
                 </li>
               ))}
