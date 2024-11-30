@@ -1,6 +1,5 @@
 import puppeteer from 'puppeteer-core';
 import chromium from '@sparticuz/chromium';
-import lambdafs from 'lambdafs';
 import { resolve } from 'path';
 import fs from 'fs'; 
 
@@ -34,13 +33,8 @@ export async function POST(req) {
     } else {
       console.log('Running in production mode.');
 
-      const binaryPath = '/tmp/chromium';
-      if (!fs.existsSync(binaryPath)) {
-        console.log('Chromium binary not found, extracting...');
-        await lambdafs.inflate(`${await chromium.executablePath}/chromium.br`);
-      }
+      executablePath = await chromium.executablePath;
 
-      executablePath = binaryPath;
       if (!fs.existsSync(executablePath)) {
         throw new Error('Chromium binary was not found in /tmp/chromium.');
       }
